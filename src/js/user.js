@@ -1,4 +1,4 @@
-import { httpGet } from './http';
+import { httpGet } from "./http";
 
 export function loadUser(id) {
   const data = httpGet(`http://server:8080/users/${id}`);
@@ -7,5 +7,5 @@ export function loadUser(id) {
 
 // eslint-disable-next-line no-unused-vars
 export function saveUser(user) {
-  throw new Error('Unimplemented');
+	throw new Error("Unimplemented");
 }

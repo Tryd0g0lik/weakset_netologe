@@ -3,21 +3,32 @@ module.exports = {
 		browser: true,
 		es6: true,
 	},
-	extends: 'airbnb-base',
+	extends: "airbnb-base",
 	overrides: [
 	],
 	parserOptions: {
-		ecmaVersion: 'latest',
-		sourceType: 'module',
+		ecmaVersion: "latest",
+		sourceType: "module",
 	},
 	rules: {
-		"quote-props": { "keywords": true },
-		"extends": "airbnb-base",
-		'no-restricted-syntax': [
-			'error',
-			'LabeledStatement',
-			'WithStatement',
+		"max-classes-per-file": 0,
+		"no-undef": 0,
+		"no-tabs": 0,
+		"indent": 0,
+		"no-unused-expressions": ["warn", { "allowShortCircuit": true }],
+		"quotes": ["error", "double", { "allowTemplateLiterals": true }],
+		"quote-props": ["error", "always"],
+		"spaced-comment": ["error", "always"],
+		"no-restricted-syntax": [
+			"error",
+			"LabeledStatement",
+			"WithStatement",
 		],
+		"new-cap": 0,
+		"class-methods-use-this": "warn",
+		"arrow-parens": ["error", "as-needed", { "requireForBlockBody": false }],
+		"array-callback-return": 0,
 		"linebreak-style": 0,
+		"no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1, "maxBOF": 0 }]
 	},
 };
