@@ -1,4 +1,4 @@
-class Bowerman {
+export class Bowerman {
 	constructor() {
 		this.helth = 100;
 		this.type = "Bowerman";
@@ -6,7 +6,8 @@ class Bowerman {
 		this.defence = 35;
 	}
 }
-class Magician {
+
+export class Magician {
 	constructor() {
 		this.helth = 100;
 		this.type = "Magician";
@@ -15,7 +16,7 @@ class Magician {
 	}
 }
 
-class King {
+export class King {
 	constructor() {
 		this.helth = 100;
 		this.type = "King";
@@ -25,7 +26,7 @@ class King {
 }
 
 
-class Team {
+export class Team {
 	constructor() {
 		this.members = new Set();
 		this.heroes = {};
@@ -33,56 +34,53 @@ class Team {
 	}
 
 	add(hero) {
-		const heroes = this.members;
-		function newThrow() {
-			console.error(`Данный "${hero.type}" уже имеется в списке. `);
-
+		if (this.members.size === 0) {
+			this.members.add(hero);
+		} else {
+			let i = -this.members.size; // счётчик
+			const sets = Array.from(this.members);
+			sets.shift();
+			sets.forEach(value => { value.type === hero.type ? null : i += 1; });
+			i === 0 ? this.members.add(hero) : this.#newThrow(hero);
 		}
-		let number;
-		this.members.size === 0 ? this.members.add(hero) : change(hero, this.members).then((numb) => {
-			numb === 0 ? this.members.add(hero) : newThrow();
-			console.log(this.members);
-		});
-
-		async function change(obj, set) {
-			let i = -set.size;
-			console.log(i)
-			await set.forEach(Promise((value) => {
-				return value
-			})()).then(() => {
-				console.log(i + " ===> " + value.type + " ===> " + obj.type);
-				value.type === obj.type ? null : i += 1
-			}
-			);
-			return await i
-
-		}
-
 	}
 
 	addAll(...heros) {
+		this.members.size === 0 ? this.members.add(heros[0][0]) : null;
+		heros[0].shift();
+
+		heros[0].filter(item => {
+			let i = -this.members.size;
+			const sets = this.members;
 
 
+			sets.forEach(value => { value.type === item.type ? this.#newThrow(value) : i += 1; });
+			i === 0 ? this.members.add(item) : null;
+		});
 	}
 
 	toArray() {
+		const arrayMembers = Array.from(this.members);
+		console.log(arrayMembers);
+	}
 
+	#newThrow(obj) {
+		console.error(`Данный "${obj.type}" уже имеется в списке. `);
 	}
 }
 
-const team = new Team();
-const bowerman = new Bowerman();
-const magician = new Magician();
-const king = new King()
-const magician2 = new Magician();
-const king2 = new King()
+
+// const team = new Team();
+// const bowerman = new Bowerman();
 // const bowerman2 = new Bowerman();
-team.add(bowerman)
-team.add(magician)
-team.add(king)
-team.add(king2)
-// team.add(magician2)
-// team.add(king2)
-// team.add(king)
-// team.add(magician)
-// console.log("team: ", team.members)
+// const king = new King();
+// const king2 = new King();
+// const magician = new Magician();
+
+// team.add(bowerman);
+// team.add(bowerman2);
+// team.add(king);
+// team.add(king2);
+
+// console.log(team.members);
+// console.log(team.members.size);
