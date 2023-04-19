@@ -3,12 +3,14 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const EslintPlugin = request("eslint-webpack-plugin");
-const isProduction = process.env.NODE_ENV == "production";
+const EslintPlugin = require("eslint-webpack-plugin");
+var request = require('request');
+// const isProduction = process.env.NODE_ENV == "production";
 
 const stylesHandler = MiniCssExtractPlugin.loader;
 
-const config = {
+module.exports = {
+	mode: "development",
 	entry: "./src/index.js",
 	output: {
 		path: path.resolve(__dirname, "dist"),
@@ -36,7 +38,7 @@ const config = {
 				test: /\.(js|jsx)$/,
 				exclude: /node_modules/,
 				use: {
-					loade: "babel-loader",
+					loader: "babel-loader",
 				}
 			},
 			{
@@ -54,11 +56,11 @@ const config = {
 	},
 };
 
-module.exports = () => {
-	if (isProduction) {
-		config.mode = "production";
-	} else {
-		config.mode = "development";
-	}
-	return config;
-};
+// module.exports = () => {
+// 	if (isProduction) {
+// 		config.mode = "production";
+// 	} else {
+// 		config.mode = "development";
+// 	}
+// 	return config;
+// };

@@ -19,6 +19,6 @@ test(`in-row: => 002 =>`, () => {
 	set.add(king);
 
 
-	expect(team.members.size).toBe(newSet.size);
+	expect(team.members.size).toBe(set.size);
 	team.members.clear();
 });
