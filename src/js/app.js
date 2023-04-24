@@ -29,8 +29,8 @@ export class King {
 export class Team {
 	constructor() {
 		this.members = new Set();
-		this.heroes = {};
-		this.i = 0;
+		// this.heroes = {};
+		// this.i = 0;
 	}
 
 	add(hero) {
