@@ -1,12 +1,10 @@
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
-
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const EslintPlugin = require("eslint-webpack-plugin");
 var request = require("request");
 var webpack = require("webpack");
-// const isProduction = process.env.NODE_ENV == "production";
 
 const stylesHandler = MiniCssExtractPlugin.loader;
 
@@ -67,12 +65,3 @@ module.exports = {
   },
 
 };
-
-// module.exports = () => {
-// 	if (isProduction) {
-// 		config.mode = "production";
-// 	} else {
-// 		config.mode = "development";
-// 	}
-// 	return config;
-// };

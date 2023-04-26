@@ -16,6 +16,7 @@ module.exports = {
 		"no-tabs": 0,
     "indent": 0,
     "operator-linebreak": 0,
+    "import/newline-after-import": ["error", { "count": 2 }],
 		"no-unused-expressions": ["warn", { "allowShortCircuit": true }],
 		"quotes": ["error", "double", { "allowTemplateLiterals": true }],
 		"quote-props": ["error", "always"],
