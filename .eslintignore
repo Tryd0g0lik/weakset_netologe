@@ -2,4 +2,4 @@ dist
 node_modules
 *.config*.js
 .*
-index.js
+**/index.js

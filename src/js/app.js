@@ -27,6 +27,8 @@ export class King {
 
 
 export class Team {
+  #booleans = false;
+
 	constructor() {
 		this.members = new Set();
 		// this.heroes = {};
@@ -34,34 +36,34 @@ export class Team {
 	}
 
 	add(hero) {
-		if (this.members.size === 0) {
-			this.members.add(hero);
-		} else {
-			let i = -this.members.size; // счётчик
-			const sets = Array.from(this.members);
-			sets.shift();
-			sets.forEach(value => { value.type === hero.type ? null : i += 1; });
-			i === 0 ? this.members.add(hero) : this.#newThrow(hero);
-		}
+    // checking 'members'. Thy has the object name the hero or no
+    this.members.size === 0 ? this.members.add(hero) : this.members.forEach(item => {
+      item.type.toLowerCase() === hero.type.toLowerCase() ? this.#booleans = true :
+        this.#newThrow(item);
+    });
+    this.#booleans ? null : this.members.add(hero);
+    this.#booleans = false;
+    const sizes = Array.from(this.members).length;
+    return sizes;
 	}
 
-	addAll(...heros) {
-		this.members.size === 0 ? this.members.add(heros[0][0]) : null;
-		heros[0].shift();
-
-		heros[0].filter(item => {
-			let i = -this.members.size;
-			const sets = this.members;
-
-
-			sets.forEach(value => { value.type === item.type ? this.#newThrow(value) : i += 1; });
-			i === 0 ? this.members.add(item) : null;
-		});
+  addAll(...heros) {
+    // got a heros list and checking  the name members list to has or not has doubles.
+    heros.forEach(hero => {
+      this.members.forEach(item => {
+        item.type.toLowerCase() === hero.type.toLowerCase() ? this.#booleans = true :
+          this.#newThrow(item);
+      });
+      this.#booleans ? null : this.members.add(hero);
+      this.#booleans = false;
+    });
+    const sizes = Array.from(this.members).length;
+    return sizes;
 	}
 
 	toArray() {
-		const arrayMembers = Array.from(this.members);
-		console.log(arrayMembers);
+    const arrayMembers = Array.from(this.members);
+    return arrayMembers;
 	}
 
 	#newThrow(obj) {
@@ -82,5 +84,9 @@ export class Team {
 // team.add(king);
 // team.add(king2);
 
+// console.log(team.members);
+// console.log(team.members.size);
+
+// team.addAll(bowerman, bowerman2, king, king2, magician, king2);
 // console.log(team.members);
 // console.log(team.members.size);
