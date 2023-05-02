@@ -37,10 +37,17 @@ export class Team {
 
 	add(hero) {
     // checking 'members'. Thy has the object name the hero or no
-    this.members.size === 0 ? this.members.add(hero) : this.members.forEach(item => {
-      item.type.toLowerCase() === hero.type.toLowerCase() ? this.#booleans = true :
-        this.#newThrow(item);
-    });
+    if (this.members.size === 0) {
+      this.members.add(hero);
+    } else {
+      this.members.forEach(item => {
+        if (item.type.toLowerCase() === hero.type.toLowerCase()) {
+          this.#booleans = true;
+        } else {
+          this.#newThrow(item);
+        }
+      })
+    };
     this.#booleans ? null : this.members.add(hero);
     this.#booleans = false;
     const sizes = Array.from(this.members).length;
