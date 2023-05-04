@@ -27,45 +27,27 @@ export class King {
 
 
 export class Team {
-  #booleans = false;
-
 	constructor() {
-		this.members = new Set();
-		// this.heroes = {};
-		// this.i = 0;
+    this.members = new Set();
 	}
 
-	add(hero) {
-    // checking 'members'. Thy has the object name the hero or no
-    if (this.members.size === 0) {
+  add(hero) {
+    try {
       this.members.add(hero);
-    } else {
-      this.members.forEach(item => {
-        if (item.type.toLowerCase() === hero.type.toLowerCase()) {
-          this.#booleans = true;
-        } else {
-          this.#newThrow(item);
-        }
-      })
-    };
-    this.#booleans ? null : this.members.add(hero);
-    this.#booleans = false;
-    const sizes = Array.from(this.members).length;
-    return sizes;
+    } catch (e) {
+      this.#newThrow(e);
+    }
 	}
 
   addAll(...heros) {
-    // got a heros list and checking  the name members list to has or not has doubles.
-    heros.forEach(hero => {
-      this.members.forEach(item => {
-        item.type.toLowerCase() === hero.type.toLowerCase() ? this.#booleans = true :
-          this.#newThrow(item);
-      });
-      this.#booleans ? null : this.members.add(hero);
-      this.#booleans = false;
+    heros.filter(item => {
+      try {
+        this.members.add(item);
+      } catch (e) {
+        this.#newThrow(e);
+      }
     });
-    const sizes = Array.from(this.members).length;
-    return sizes;
+    return this.members.size;
 	}
 
 	toArray() {
@@ -90,6 +72,7 @@ export class Team {
 // team.add(bowerman2);
 // team.add(king);
 // team.add(king2);
+// team.add(king);
 
 // console.log(team.members);
 // console.log(team.members.size);
