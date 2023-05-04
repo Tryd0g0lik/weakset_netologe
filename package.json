@@ -8,8 +8,7 @@
 		"lint": "eslint .",
     "build": "webpack --mode production -c ./webpack.config.js",
     "build:dev": "webpack --mode development -c ./webpack.config.js",
-    "serve": "webpack serve",
-    "prepare": "husky install"
+    "serve": "webpack serve"
 	},
 	"repository": {
 		"type": "git",
@@ -43,5 +42,5 @@
     "webpack-cli": "^5.0.2",
 		"webpack-dev-server": "^4.13.3",
 		"webpack-merge": "^5.8.0"
-	}
+  }
 }
